@@ -7,4 +7,11 @@ export default ({ env }: { env: any }) => ({
   webhooks: {
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
   },
+  // Cloud cron job runner configuration
+  cloudCronJobRunner: {
+    apiToken: 'default-token',
+    apiUrl: 'http://localhost:1337',
+    firstRunWindow: '0 0 * * *',
+    enabled: true,
+  },
 });
