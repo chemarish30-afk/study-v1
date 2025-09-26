@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_shared_data_tables",
+  "info": {
+    "displayName": "Data Table",
+    "description": "A data table with title, headers, and rows"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "headers": {
+      "type": "json",
+      "required": true
+    },
+    "rows": {
+      "type": "json",
+      "required": true
+    }
+  }
+}

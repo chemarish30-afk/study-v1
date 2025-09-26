@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exam_courses",
+  "info": {
+    "singularName": "exam-course",
+    "pluralName": "exam-courses",
+    "displayName": "Exam Course",
+    "description": "An exam course containing multiple subjects"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "subjects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subject.subject",
+      "mappedBy": "examCourse"
+    }
+  }
+}

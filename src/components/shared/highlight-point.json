@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_shared_highlight_points",
+  "info": {
+    "displayName": "Highlight Point",
+    "description": "A key highlight point with text"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

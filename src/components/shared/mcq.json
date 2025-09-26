@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_mcqs",
+  "info": {
+    "displayName": "MCQ",
+    "description": "Multiple Choice Question with options, answer, and explanation"
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "text",
+      "required": true
+    },
+    "options": {
+      "type": "json",
+      "required": true
+    },
+    "answer": {
+      "type": "string",
+      "required": true
+    },
+    "explanation": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,67 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: 'apps/cms/package-lock.json'
+        
+    - name: Install dependencies
+      run: |
+        cd apps/cms
+        npm ci
+        
+    - name: Run ESLint
+      run: |
+        cd apps/cms
+        npm run lint
+        
+    - name: Run TypeScript type checking
+      run: |
+        cd apps/cms
+        npx tsc --noEmit
+        
+    - name: Build project
+      run: |
+        cd apps/cms
+        npm run build
+        
+    - name: Check build artifacts
+      run: |
+        cd apps/cms
+        ls -la dist/
+        
+  # Note: Strapi Cloud deployment is handled via Strapi Cloud's GitHub integration
+  # See: https://docs.strapi.io/dev-docs/deployment/cloud
+  deploy-notice:
+    runs-on: ubuntu-latest
+    needs: lint-and-build
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - name: Deployment Notice
+      run: |
+        echo "🚀 Ready for deployment to Strapi Cloud!"
+        echo "📋 Next steps:"
+        echo "1. Connect your GitHub repository to Strapi Cloud"
+        echo "2. Configure environment variables in Strapi Cloud dashboard"
+        echo "3. Deploy your application"
+        echo "📖 Documentation: https://docs.strapi.io/dev-docs/deployment/cloud"

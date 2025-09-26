@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contents",
+  "info": {
+    "singularName": "content",
+    "pluralName": "contents",
+    "displayName": "Content",
+    "description": "Content within a module"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "keyHighlights": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.highlight-point"
+    },
+    "tables": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.data-table"
+    },
+    "mcqs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.mcq"
+    },
+    "module": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::module.module",
+      "inversedBy": "contents"
+    }
+  }
+}
